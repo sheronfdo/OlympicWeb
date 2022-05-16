@@ -1,6 +1,7 @@
 <?php
   require_once('service/userService.php');
   require_once('model/user.php');
+  require_once('database/dbconnect.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -22,17 +23,17 @@
   <div class="container">
         <div class="forms-container">
             <div class="signin-signup">
-                <form action="home.php" class="sign-in-form">
+                <form action="login_register.php" method="POST" class="sign-in-form">
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username">
+                        <input type="text" name="uname" placeholder="Username">
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password">
+                        <input type="password" name="pass" placeholder="Password">
                     </div>
-                    <input type="submit" value="Login" class="btn solid" onclick="home.html">
+                    <input type="submit" name="loginSubmit" value="Login" class="btn solid" >
                     <div class="social-media">
                         <a href="https://www.facebook.com/" class="social-icon">
                             <i class="fab fa-facebook-f"></i>
@@ -59,7 +60,7 @@
                         <i class="fas fa-lock"></i>
                         <input type="password" name="pass" placeholder="Password">
                     </div>
-                    <input type="submit" name="submit" value="Sign up" class="btn solid">
+                    <input type="submit" name="signSubmit" value="Sign up" class="btn solid">
                    
                     <div class="social-media">
                         <a href="https://www.facebook.com/" class="social-icon">
@@ -96,20 +97,29 @@
      <?php
      
      if ($_SERVER['REQUEST_METHOD'] == "POST") {
-      // removes backslashes
+       if(isset($_POST['signSubmit'])){
+         // removes backslashes
          $username = stripslashes($_POST['uname']);
          $email = stripslashes($_REQUEST['email']);
          $password = stripslashes($_REQUEST['pass']);
-         
-       // $user = new User();
-       // $user->__constructWithoutId($username,$email,$password);
+        
         $uService = new UserService();
         $uService->__constructWithoutId($username,$email,$password);
         $uService->insertUser();
+
+       }
+    
      }
-      
-     
-     
+     if ($_SERVER['REQUEST_METHOD'] == "POST") {
+      if(isset($_POST['loginSubmit'])){
+        $username1 = stripslashes($_POST['uname']);
+        $password1 = stripslashes($_REQUEST['pass']);
+
+        $db = new dbConnect();
+        $db->getfromdb("SELECT * FROM user WHERE userName='$username1' && password='$password1'");
+      }
+    }
+        
      
      ?>
 
