@@ -100,8 +100,8 @@
        if(isset($_POST['signSubmit'])){
          // removes backslashes
          $username = stripslashes($_POST['uname']);
-         $email = stripslashes($_REQUEST['email']);
-         $password = stripslashes($_REQUEST['pass']);
+         $email = stripslashes($_POST['email']);
+         $password = stripslashes($_POST['pass']);
         
         $uService = new UserService();
         $uService->__constructWithoutId($username,$email,$password);
@@ -113,10 +113,10 @@
      if ($_SERVER['REQUEST_METHOD'] == "POST") {
       if(isset($_POST['loginSubmit'])){
         $username1 = stripslashes($_POST['uname']);
-        $password1 = stripslashes($_REQUEST['pass']);
+        $password1 = stripslashes($_POST['pass']);
 
         $db = new dbConnect();
-        $db->getfromdb("SELECT * FROM user WHERE userName='$username1' && password='$password1'");
+        $db->getfromdb("SELECT userName,password FROM user WHERE userName='$username1' && password='$password1'");
       }
     }
         
