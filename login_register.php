@@ -116,7 +116,15 @@
         $password1 = stripslashes($_POST['pass']);
 
         $db = new dbConnect();
-        $db->getfromdb("SELECT userName,password FROM user WHERE userName='$username1' && password='$password1'");
+       $result = $db->getfromdb("SELECT userName,password FROM user WHERE userName='$username1' && password='$password1'");
+       $rows = mysqli_num_rows($result);
+       if($rows>0){
+       echo "<script> window.location.href='home.php';</script>";
+       }
+       else{
+        echo "<script> window.location.href='login_register.php?error=Incorect User name or password';</script>";
+       
+       }
       }
     }
         
