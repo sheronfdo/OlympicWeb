@@ -10,19 +10,19 @@ class EventService extends Event
         $this->db = new dbConnect();
     }
 
-    public function insertNews()
+    public function insertEvent()
     {
         $query = "INSERT INTO `event`(`overview`, `imageName`, `date`, `time`) VALUES ('" . $this->getOverview() . "','" . $this->getImageName() . "','" . $this->getdate() . "','" . $this->getTime() . "')";
         $this->db->insertIntoDb($query);
     }
 
-    public function updateNews()
+    public function updateEvent()
     {
         $query = "UPDATE `event` SET `overview`='" . $this->getOverview() . "',`imageName`='" . $this->getImageName() . "',`date`='" . $this->getDate() . "',`time`='" . $this->getTime() . "' WHERE `id`='" . $this->getId() . "'";
         $this->db->insertIntoDb($query);
     }
 
-    public function deleteNews()
+    public function deleteEvent()
     {
         $query = "UPDATE `event` SET `status`=0 WHERE `id`='" . $this->getId() . "'";
         $this->db->insertIntoDb($query);
