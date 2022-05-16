@@ -1,3 +1,7 @@
+<?php
+  require_once('service/userService.php');
+  require_once('model/user.php');
+?>
 <!doctype html>
 <html lang="en">
 
@@ -41,21 +45,21 @@
                         </a>
                     </div>
                 </form>
-                <form action="login_register.php" class="sign-up-form">
+                <form action="login_register.php" method="POST" class="sign-up-form" onsubmit="validateForm()">
                     <h2 class="title">Sign up</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username">
+                        <input type="text" name="uname" placeholder="Username">
                     </div>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Email">
+                        <input type="email" name="email" placeholder="Email">
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password">
+                        <input type="password" name="pass" placeholder="Password">
                     </div>
-                    <input type="submit" value="Sign up" class="btn solid">
+                    <input type="submit" name="submit" value="Sign up" class="btn solid">
                    
                     <div class="social-media">
                         <a href="https://www.facebook.com/" class="social-icon">
@@ -89,7 +93,25 @@
             </div>
         </div>
     </div>
-
+     <?php
+     
+     if ($_SERVER['REQUEST_METHOD'] == "POST") {
+      // removes backslashes
+         $username = stripslashes($_POST['uname']);
+         $email = stripslashes($_REQUEST['email']);
+         $password = stripslashes($_REQUEST['pass']);
+         
+       // $user = new User();
+       // $user->__constructWithoutId($username,$email,$password);
+        $uService = new UserService();
+        $uService->__constructWithoutId($username,$email,$password);
+        $uService->insertUser();
+     }
+      
+     
+     
+     
+     ?>
 
     <script src="js/script.js"></script>
 
