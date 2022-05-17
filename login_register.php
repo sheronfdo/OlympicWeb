@@ -46,6 +46,8 @@
                         </a>
                     </div>
                 </form>
+                
+                
                 <form action="login_register.php" method="POST" class="sign-up-form" onsubmit="validateForm()">
                     <h2 class="title">Sign up</h2>
                     <div class="input-field">
@@ -119,7 +121,10 @@
        $result = $db->getfromdb("SELECT userName,password FROM user WHERE userName='$username1' && password='$password1'");
        $rows = mysqli_num_rows($result);
        if($rows>0){
-       echo "<script> window.location.href='home.php';</script>";
+        echo "<script> window.location.href='home.php';
+        </script>";
+        echo 'alert("message successfully sent")';
+      
        }
        else{
         echo "<script> window.location.href='login_register.php?error=Incorect User name or password';</script>";
