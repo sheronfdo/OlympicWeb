@@ -1,0 +1,11 @@
+.news-form {
+    margin: auto;
+}
+
+.fileupload {
+    margin: auto;
+    padding: 6px;
+    background-color: rgb(253, 252, 251);
+    border: 1px rgb(214, 214, 214) solid;
+    border-radius: 4px;
+}
