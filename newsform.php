@@ -35,7 +35,7 @@
 </head>
 
 <body>
-    
+    <div><?php include('common/sidebar.php'); ?></div>
 
     <div class="col-11 col-xxl-5 col-xl-6 col-lg-7 col-md-8 col-sm-10 news-form">
         <div class="card card-primary">
@@ -116,6 +116,6 @@
 
 </html>
 
-<?php 
+<?php
 
 ?>

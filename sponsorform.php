@@ -40,23 +40,19 @@
         <div class="col-11 col-xxl-5 col-xl-6 col-lg-7 col-md-8 col-sm-10 news-form">
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Add Event</h3>
+                    <h3 class="card-title">Add Sponsor Content</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="Title">Overview</label>
+                            <label for="Title">Description</label>
                             <input type="text" class="form-control" placeholder="Enter Overview">
                         </div>
                         <div class="form-group">
-                            <label for="description">Date</label>
-                            <input type="date" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="description">Time</label>
-                            <input type="time" class="form-control">
+                            <label for="description">Source Link</label>
+                            <input type="text" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">Image Upload</label>
@@ -64,7 +60,20 @@
                                 <div class="custom-file">
                                     <input type="file" name="fileupload" class="fileupload col-12" id="fileupload">
                                 </div>
-
+                            </div>
+                        </div>
+                        <div><label for="exampleInputFile">Shown Location</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Default radio
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Default checked radio
+                                </label>
                             </div>
                         </div>
                     </div>
