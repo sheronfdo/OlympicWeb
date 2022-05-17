@@ -1,3 +1,58 @@
+<?php
+  require_once('service/eventService.php');
+
+$errors = array();
+$errors1 = array();
+$errors2 = array();
+$errors3 = array();
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+   if(isset($_POST['event_submit'])){
+        $view = $_POST['overview'];
+        $date = $_POST['date'];
+        $time = $_POST['time'];
+        $file_name = $_FILES['image']['name'];
+        $file_type = $_FILES['image']['type'];
+        $file_size = $_FILES['image']['size'];
+        $temp_name = $_FILES['image']['tmp_name'];
+        
+        $upload_to = 'images/';
+       // print_r($_FILES);
+
+       // if($file_type != 'image/jpeg' || $file_type != 'image/png'){
+        //   $errors[] = 'JPEG and PNG files are allowed.';
+        //}
+        if(empty($view)){
+            $errors1[] = 'Overview is Required';
+            
+        }if(empty($date)){
+            $errors2[] = 'date is Required';
+            
+        }if(empty($time)){
+            $errors3[] = 'time is Required';
+            
+        }
+        if(!empty($view) && !empty($date) && !empty($time) && !empty($file_name)){
+            if($file_size > 2000000){
+                $errors[] = 'File size should be less than 2Mb';
+              
+              }else{
+                  $file_uploaded = move_uploaded_file($temp_name, $upload_to . $file_name);
+                  if($file_uploaded){
+                   echo '<script> alert("file Uploaded"); </script>';
+                }
+                $_EventService = new EventService();
+                $_EventService->__constructWithoutId($view,$file_name,$date,$time);
+                $_EventService->insertEvent();
+              }  
+
+        }
+        
+    
+   }
+}
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -44,37 +99,76 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form>
+            <form action="eventform.php" method="POST" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="form-group">
                         <label for="Title">Overview</label>
-                        <input type="text" class="form-control" placeholder="Enter Overview">
+                        <?php
+             if(!empty($errors1)){
+                echo '<div class="errors">';
+              foreach ($errors1 as $error1){
+                     echo '- ' . $error1;
+              }
+               echo '</div>';
+            }
+            ?>
+                        <input type="text" name="overview" class="form-control" placeholder="Enter Overview">
                     </div>
                     <div class="form-group">
                         <label for="description">Date</label>
-                        <input type="date" class="form-control">
+                        <?php
+             if(!empty($errors2)){
+                echo '<div class="errors">';
+              foreach ($errors2 as $error2){
+                     echo '- ' . $error2;
+              }
+               echo '</div>';
+            }
+            ?>
+                        <input type="date" name="date" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="description">Time</label>
-                        <input type="time" class="form-control">
+                        <?php
+             if(!empty($errors3)){
+                echo '<div class="errors">';
+              foreach ($errors3 as $error3){
+                     echo '- ' . $error3;
+              }
+               echo '</div>';
+            }
+            ?>
+                        <input type="time" name="time" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputFile">Image Upload</label>
+                        <?php
+             if(!empty($errors)){
+                echo '<div class="errors">';
+              foreach ($errors as $error){
+                     echo '- ' . $error;
+              }
+               echo '</div>';
+            }
+            ?>
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" name="fileupload" class="fileupload col-12" id="fileupload">
+                                <input type="file" name="image" class="fileupload col-12" id="fileupload">
                             </div>
-
                         </div>
                     </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="event_submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>
     </div>
+    <?php
+         
+    ?>
+   
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->

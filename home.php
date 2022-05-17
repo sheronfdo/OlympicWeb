@@ -37,8 +37,8 @@ endforse<br>
 fcloses<br>
 sdsdsdc<br>
 sdsdvf<br>
-</body>
-</html>
 <?php
 require 'common/footer.php';
 ?>
+</body>
+</html>
