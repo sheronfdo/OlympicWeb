@@ -1,50 +1,3 @@
-<?php
-  require_once('service/newsService.php');
-
-$errors = array();
-$errors1 = array();
-$errors2 = array();
-
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-   if(isset($_POST['news_submit'])){
-        $title = $_POST['tit'];
-        $description = $_POST['desc'];
-        $file_name = $_FILES['news_image']['name'];
-        $file_type = $_FILES['news_image']['type'];
-        $file_size = $_FILES['news_image']['size'];
-        $temp_name = $_FILES['news_image']['tmp_name'];
-        
-        $upload_to = 'images/';
-       // print_r($_FILES);
-
-        if(empty($title)){
-            $errors1[] = 'Title is Required';
-            
-        }if(empty($description)){
-            $errors2[] = 'Description is Required';
-            
-        }
-        if(!empty($title) && !empty($description) &&  !empty($file_name)){
-            if($file_size > 2000000){
-                $errors[] = 'File size should be less than 2Mb';
-              
-              }else{
-                  $file_uploaded = move_uploaded_file($temp_name, $upload_to . $file_name);
-                  if($file_uploaded){
-                   echo '<script> alert("file Uploaded"); </script>';
-                }
-                $_NewsService = new NewsService();
-                $_NewsService->__constructWithoutId($title,$description,$file_name);
-                $_NewsService->insertNews();
-              }  
-
-        }
-        
-    
-   }
-}
-
-?>
 <!doctype html>
 <html lang="en">
 
@@ -83,68 +36,58 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <body>
     <div><?php include('common/sidebar.php'); ?></div>
-
-    <div class="col-11 col-xxl-5 col-xl-6 col-lg-7 col-md-8 col-sm-10 news-form">
-        <div class="card card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Add News</h3>
-            </div>
-            <!-- /.card-header -->
-            <!-- form start -->
-            <form method="POST" action="newsform.php" enctype="multipart/form-data">
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="Title">Title</label>
-                        <?php
-             if(!empty($errors1)){
-                echo '<div class="errors">';
-              foreach ($errors1 as $error1){
-                     echo '- ' . $error1;
-              }
-               echo '</div>';
-            }
-            ?>
-                        <input type="text" name="tit" class="form-control" placeholder="Enter Title">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <?php
-             if(!empty($errors2)){
-                echo '<div class="errors">';
-              foreach ($errors2 as $error2){
-                     echo '- ' . $error2;
-              }
-               echo '</div>';
-            }
-            ?>
-                        <input type="text" name="desc" class="form-control" placeholder="Enter Description">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputFile">Image Upload</label>
-                        <?php
-             if(!empty($errors)){
-                echo '<div class="errors">';
-              foreach ($errors as $error){
-                     echo '- ' . $error;
-              }
-               echo '</div>';
-            }
-            ?>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" name="news_image" class="fileupload col-12" id="fileupload">
+    <div>
+        <div class="col-11 col-xxl-5 col-xl-6 col-lg-7 col-md-8 col-sm-10 news-form">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Add Sponsor Content</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="Title">Description</label>
+                            <input type="text" class="form-control" placeholder="Enter Overview">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Source Link</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Image Upload</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" name="fileupload" class="fileupload col-12" id="fileupload">
+                                </div>
                             </div>
-
+                        </div>
+                        <div><label for="exampleInputFile">Shown Location</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Default radio
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Default checked radio
+                                </label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                    <button type="submit" name="news_submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+
+
+
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
