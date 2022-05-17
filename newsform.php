@@ -1,47 +1,42 @@
 <?php
-  require_once('service/newsService.php');
+require_once('service/newsService.php');
 
 $errors = array();
 $errors1 = array();
 $errors2 = array();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-   if(isset($_POST['news_submit'])){
+    if (isset($_POST['news_submit'])) {
         $title = $_POST['tit'];
         $description = $_POST['desc'];
         $file_name = $_FILES['news_image']['name'];
         $file_type = $_FILES['news_image']['type'];
         $file_size = $_FILES['news_image']['size'];
         $temp_name = $_FILES['news_image']['tmp_name'];
-        
-        $upload_to = 'images/';
-       // print_r($_FILES);
 
-        if(empty($title)){
+        $upload_to = 'images/';
+        // print_r($_FILES);
+
+        if (empty($title)) {
             $errors1[] = 'Title is Required';
-            
-        }if(empty($description)){
-            $errors2[] = 'Description is Required';
-            
         }
-        if(!empty($title) && !empty($description) &&  !empty($file_name)){
-            if($file_size > 2000000){
+        if (empty($description)) {
+            $errors2[] = 'Description is Required';
+        }
+        if (!empty($title) && !empty($description) &&  !empty($file_name)) {
+            if ($file_size > 2000000) {
                 $errors[] = 'File size should be less than 2Mb';
-              
-              }else{
-                  $file_uploaded = move_uploaded_file($temp_name, $upload_to . $file_name);
-                  if($file_uploaded){
-                   echo '<script> alert("file Uploaded"); </script>';
+            } else {
+                $file_uploaded = move_uploaded_file($temp_name, $upload_to . $file_name);
+                if ($file_uploaded) {
+                    echo '<script> alert("file Uploaded"); </script>';
                 }
                 $_NewsService = new NewsService();
-                $_NewsService->__constructWithoutId($title,$description,$file_name);
+                $_NewsService->__constructWithoutId($title, $description, $file_name);
                 $_NewsService->insertNews();
-              }  
-
+            }
         }
-        
-    
-   }
+    }
 }
 
 ?>
@@ -96,40 +91,40 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <div class="form-group">
                         <label for="Title">Title</label>
                         <?php
-             if(!empty($errors1)){
-                echo '<div class="errors">';
-              foreach ($errors1 as $error1){
-                     echo '- ' . $error1;
-              }
-               echo '</div>';
-            }
-            ?>
+                        if (!empty($errors1)) {
+                            echo '<div class="errors">';
+                            foreach ($errors1 as $error1) {
+                                echo '- ' . $error1;
+                            }
+                            echo '</div>';
+                        }
+                        ?>
                         <input type="text" name="tit" class="form-control" placeholder="Enter Title">
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
                         <?php
-             if(!empty($errors2)){
-                echo '<div class="errors">';
-              foreach ($errors2 as $error2){
-                     echo '- ' . $error2;
-              }
-               echo '</div>';
-            }
-            ?>
+                        if (!empty($errors2)) {
+                            echo '<div class="errors">';
+                            foreach ($errors2 as $error2) {
+                                echo '- ' . $error2;
+                            }
+                            echo '</div>';
+                        }
+                        ?>
                         <input type="text" name="desc" class="form-control" placeholder="Enter Description">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputFile">Image Upload</label>
                         <?php
-             if(!empty($errors)){
-                echo '<div class="errors">';
-              foreach ($errors as $error){
-                     echo '- ' . $error;
-              }
-               echo '</div>';
-            }
-            ?>
+                        if (!empty($errors)) {
+                            echo '<div class="errors">';
+                            foreach ($errors as $error) {
+                                echo '- ' . $error;
+                            }
+                            echo '</div>';
+                        }
+                        ?>
                         <div class="input-group">
                             <div class="custom-file">
                                 <input type="file" name="news_image" class="fileupload col-12" id="fileupload">

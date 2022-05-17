@@ -1,7 +1,7 @@
 <?php
-  require_once('service/userService.php');
-  require_once('model/user.php');
-  require_once('database/dbconnect.php');
+require_once('service/userService.php');
+require_once('model/user.php');
+require_once('database/dbconnect.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -16,11 +16,12 @@
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <title>login-register</title>
-  </head>
-  <body>
-  
+</head>
 
-  <div class="container">
+<body>
+
+
+    <div class="container">
         <div class="forms-container">
             <div class="signin-signup">
                 <form action="login_register.php" method="POST" class="sign-in-form">
@@ -33,7 +34,7 @@
                         <i class="fas fa-lock"></i>
                         <input type="password" name="pass" placeholder="Password">
                     </div>
-                    <input type="submit" name="loginSubmit" value="Login" class="btn solid" >
+                    <input type="submit" name="loginSubmit" value="Login" class="btn solid">
                     <div class="social-media">
                         <a href="https://www.facebook.com/" class="social-icon">
                             <i class="fab fa-facebook-f"></i>
@@ -46,8 +47,8 @@
                         </a>
                     </div>
                 </form>
-                
-                
+
+
                 <form action="login_register.php" method="POST" class="sign-up-form" onsubmit="validateForm()">
                     <h2 class="title">Sign up</h2>
                     <div class="input-field">
@@ -63,7 +64,7 @@
                         <input type="password" name="pass" placeholder="Password">
                     </div>
                     <input type="submit" name="signSubmit" value="Sign up" class="btn solid">
-                   
+
                     <div class="social-media">
                         <a href="https://www.facebook.com/" class="social-icon">
                             <i class="fab fa-facebook-f"></i>
@@ -96,50 +97,45 @@
             </div>
         </div>
     </div>
-     <?php
-     
-     if ($_SERVER['REQUEST_METHOD'] == "POST") {
-       if(isset($_POST['signSubmit'])){
-         // removes backslashes
-         $username = stripslashes($_POST['uname']);
-         $email = stripslashes($_POST['email']);
-         $password = stripslashes($_POST['pass']);
-        
-        $uService = new UserService();
-        $uService->__constructWithoutId($username,$email,$password);
-        $uService->insertUser();
+    <?php
 
-       }
-    
-     }
-     if ($_SERVER['REQUEST_METHOD'] == "POST") {
-      if(isset($_POST['loginSubmit'])){
-        $username1 = stripslashes($_POST['uname']);
-        $password1 = stripslashes($_POST['pass']);
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        if (isset($_POST['signSubmit'])) {
+            // removes backslashes
+            $username = stripslashes($_POST['uname']);
+            $email = stripslashes($_POST['email']);
+            $password = stripslashes($_POST['pass']);
 
-        $db = new dbConnect();
-       $result = $db->getfromdb("SELECT userName,password FROM user WHERE userName='$username1' && password='$password1'");
-       $rows = mysqli_num_rows($result);
-       if($rows>0){
-        echo "<script> window.location.href='home.php';
-        </script>";
-        echo 'alert("message successfully sent")';
-      
-       }
-       else{
-        echo "<script> window.location.href='login_register.php?error=Incorect User name or password';</script>";
-       
-       }
-      }
+            $uService = new UserService();
+            $uService->__constructWithoutId($username, $email, $password);
+            $uService->insertUser();
+        }
     }
-        
-     
-     ?>
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        if (isset($_POST['loginSubmit'])) {
+            $username1 = stripslashes($_POST['uname']);
+            $password1 = stripslashes($_POST['pass']);
+
+            $db = new dbConnect();
+            $result = $db->getfromdb("SELECT userName,password FROM user WHERE userName='$username1' && password='$password1'");
+            $rows = mysqli_num_rows($result);
+            if ($rows > 0) {
+                echo "<script> window.location.href='home.php';
+        </script>";
+                echo 'alert("message successfully sent")';
+            } else {
+                echo "<script> window.location.href='login_register.php?error=Incorect User name or password';</script>";
+            }
+        }
+    }
+
+
+    ?>
 
     <script src="js/script.js"></script>
 
 
-  
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -151,6 +147,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
-    </body>
+</body>
 
 </html>
