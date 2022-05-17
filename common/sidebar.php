@@ -105,7 +105,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="nav-icon fa fa-plus-square"></i>
+                                    <i class="nav-icon fa fa-users" aria-hidden="true"></i>
                                     <p>
                                         Administrator Manage
                                         <i class="right fas fa-angle-left"></i>
