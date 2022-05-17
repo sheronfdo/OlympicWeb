@@ -90,7 +90,7 @@
                                 </a>
                                 <ul class="nav nav-treeview" style="display: none;">
                                     <li class="nav-item">
-                                        <a href="./index.html" class="nav-link">
+                                        <a href="./sponsorform.php" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Add Sponsor</p>
                                         </a>
@@ -113,7 +113,7 @@
                                 </a>
                                 <ul class="nav nav-treeview" style="display: none;">
                                     <li class="nav-item">
-                                        <a href="./index.html" class="nav-link">
+                                        <a href="./adminform.php" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Add Administrator</p>
                                         </a>
