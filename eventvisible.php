@@ -1,4 +1,22 @@
-<?php require_once('database/dbconnect.php'); ?>
+<?php
+require_once('database/dbconnect.php');
+$db = new dbConnect();
+
+$eventId = $_GET['eventid'];
+$query = "select * from event where id=" . $eventId;
+$overview = null;
+$imageName = null;
+$date = null;
+$time = null;
+
+$result = $db->getfromdb($query);
+if ($row = mysqli_fetch_array($result)) {
+    $overview = $row['overview'];
+    $imageName = $row['imageName'];
+    $date = $row['date'];
+    $time = $row['time'];
+}
+?>
 
 <!doctype html>
 <html lang="en">
@@ -9,29 +27,15 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/news.css">
+
 </head>
 
 <body>
     <?php include('common/header.php'); ?>
-    <div class="blog">
-        <?php
-        $db = new dbConnect();
-        $query = "select * from event where status='1' ORDER BY id DESC";
-        $result = $db->getfromdb($query);
-        if ($rows = mysqli_num_rows($result)) {
-            $i = 0;
-            while ($row = mysqli_fetch_array($result)) {
-                echo '<a href="eventvisible.php?eventid='.$row['id'].'"><div class="card post" style="width: 20rem;">
-            <div class="card-body"><h5 class="card-title">' . substr($row['overview'], 0, 60) . '</h5></div>
-            <img src="images/' . $row['imageName'] . '" class="card-img-top" alt="event image">
-            </div></a>';
-            }
-        }
+    <h1><?php echo $overview ?></h1>
+    <img src="images/<?php echo $imageName ?>" alt="image name">
+    <p><?php echo $date . ' ' . $time ?></p>
 
-        ?>
-
-    </div>
 
 
 
