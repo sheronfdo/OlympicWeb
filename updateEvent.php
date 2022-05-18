@@ -9,7 +9,7 @@ $errors3 = array();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['event_update'])) {
-        $evntId = $_POST['evntId'];
+        $evntId = $_POST['eventId'];
         $view = $_POST['overview'];
         $date = $_POST['date'];
         $time = $_POST['time'];
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         echo $view.'<br>'; 
         echo $date.'<br>'; 
         echo $time.'<br>'; 
-        echo $tfile_nameime.'<br>'; 
+        echo $file_name.'<br>'; 
 
         $upload_to = 'images/';
         // print_r($_FILES);
@@ -46,9 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 if ($file_uploaded) {
                     echo $evntId;
                     $_EventService1 = new EventService();
-                    $_EventService1->setId($evntId);
-                    $_EventService1->__constructWithoutId($view, $file_name, $date, $time);
-                  echo $_EventService1->getId();
+                    $_EventService1->__constructWithId($evntId,$view, $file_name, $date, $time);
+                    $_EventService1->updateEvent();
                  // echo '<script> alert($_EventService1->getId()); </script>';
                   //  echo '<script> alert("Image Updated and Event Updated Successfull"); </script>';
                 //echo '<script>  window.location.href="eventManageForm.php";</script>';
@@ -108,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="eventManageForm.php" method="POST" enctype="multipart/form-data">
+                <form action="updateEvent.php" method="POST" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="Title">Overview</label>
@@ -122,6 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             }
                             ?>
                             <input type="text" name="overview" class="form-control" placeholder="Enter Overview">
+                            <input type="text" name="eventId" value="<?php echo $_POST['evntId'];?>" class="form-control" placeholder="Enter Overview" hidden>
                         </div>
                         <div class="form-group">
                             <label for="description">Date</label>
