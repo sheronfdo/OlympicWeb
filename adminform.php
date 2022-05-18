@@ -136,13 +136,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             ?>
                             <input type="password" name="overview" class="form-control" placeholder="Enter Password">
                         </div>
+                    </div><!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" name="event_submit" class="btn btn-primary">Submit</button>
                     </div>
+                </form>
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                <button type="submit" name="event_submit" class="btn btn-primary">Submit</button>
-            </div>
-            </form>
+
         </div>
     </div>
     </div>
