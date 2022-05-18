@@ -1,32 +1,35 @@
 <?php
 require_once('service/administratorService.php');
 
+
 $errors1 = array();
 $errors2 = array();
 $errors3 = array();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (isset($_POST['admin_submit'])) {
+    if (isset($_POST['admin_update'])) {
+        $_adminId = $_POST['admin_Id'];
         $username = $_POST['uname'];
         $email = $_POST['email'];
         $password = $_POST['pass'];
-
        
         if (empty($username)) {
-            $errors1[] = 'Username is Required';
+            $errors1[] = 'username is Required';
         }
         if (empty($email)) {
-            $errors2[] = 'Email is Required';
+            $errors2[] = 'email is Required';
         }
         if (empty($password)) {
-            $errors3[] = 'Password is Required';
+            $errors3[] = 'password is Required';
         }
-        if (!empty($username) && !empty($email) && !empty($password)) {          
-                $administratorService = new AdministratorService();
-                $administratorService->__constructWithoutId($username, $email, $password);
-                $administratorService->insertAdministrator();
-                echo '<script> alert("Admin Register Successfully"); </script>';
-                echo "<script> window.location.href='adminManageForm.php';</script>";
+        if (!empty($username) && !empty($email) && !empty($password)) {
+        
+                    $_administratorService = new AdministratorService();
+                    $_administratorService->__constructWithId($_adminId, $username, $email, $password);
+                    $_administratorService->updateAdministrator();
+                    echo '<script> alert("Admin Updated Successfull"); </script>';
+                echo '<script>  window.location.href="adminManageForm.php";</script>';     
+            
         }
     }
 }
@@ -65,21 +68,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     <!--cusstom css-->
     <link rel="stylesheet" href="css/news.css">
-    <title>News</title>
+    <title>Update Event</title>
 </head>
 
 <body>
+
     <div><?php include('common/sidebar.php'); ?></div>
     <div>
 
         <div class="col-11 col-xxl-5 col-xl-6 col-lg-7 col-md-8 col-sm-10 news-form">
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Add Administrator</h3>
+                    <h3 class="card-title">Update Admin</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="adminform.php" method="POST">
+                <form action="adminManageForm.php" method="POST">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="Title">Username</label>
@@ -93,14 +97,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             }
                             ?>
                             <input type="text" name="uname" class="form-control" placeholder="Enter Username">
+                            <input type="text" name="admin_Id" value="<?php echo $_POST['admin_id'];?>" class="form-control" placeholder="Enter Overview" hidden>
                         </div>
                         <div class="form-group">
                             <label for="Title">Email</label>
                             <?php
-                            if (!empty($errors1)) {
+                            if (!empty($errors2)) {
                                 echo '<div class="errors">';
-                                foreach ($errors1 as $error1) {
-                                    echo '- ' . $error1;
+                                foreach ($errors2 as $error2) {
+                                    echo '- ' . $error2;
                                 }
                                 echo '</div>';
                             }
@@ -110,10 +115,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <div class="form-group">
                             <label for="Title">Password</label>
                             <?php
-                            if (!empty($errors1)) {
+                            if (!empty($errors3)) {
                                 echo '<div class="errors">';
-                                foreach ($errors1 as $error1) {
-                                    echo '- ' . $error1;
+                                foreach ($errors3 as $error3) {
+                                    echo '- ' . $error3;
                                 }
                                 echo '</div>';
                             }
@@ -122,13 +127,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         </div>
                     </div><!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" name="admin_submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" name="admin_update" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>
-
         </div>
-    </div>
     </div>
 
     <!-- jQuery -->
