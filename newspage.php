@@ -20,22 +20,20 @@
         $query = "select * from news where status='1'";
         $result = $db->getfromdb($query);
         if ($rows = mysqli_num_rows($result)) {
-            $i=0;
+            $i = 0;
             while ($row = mysqli_fetch_array($result)) {
 
 
                 echo '<div class="card post" style="width: 20rem;">
-            <div class="card-body"><h5 class="card-title">' . $row['title'] . '</h5></div>
+            <div class="card-body"><h5 class="card-title">' . substr($row['title'], 0, 60) . '</h5></div>
             <img src="images/' . $row['imageName'] . '" class="card-img-top" alt="event image">
             <div class="card-body">
               <p class="card-text">' . substr($row['discription'], 0, 60) . '...</p>
             </div>
             </div>';
-
-            
             }
         }
-        
+
         ?>
 
     </div>
