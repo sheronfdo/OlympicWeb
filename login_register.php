@@ -109,6 +109,7 @@ require_once('database/dbconnect.php');
             $uService = new UserService();
             $uService->__constructWithoutId($username, $email, $password);
             $uService->insertUser();
+            echo '<script> alert("Register Successfully"); </script>';
         }
     }
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
