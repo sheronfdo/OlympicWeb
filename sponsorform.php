@@ -1,3 +1,45 @@
+<?php
+require_once('service/sponsorContentService.php');
+
+$errors = array();
+$errors1 = array();
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    if (isset($_POST['sponsor_submit'])) {
+        $description = $_POST['desc'];
+        $sourse_link = $_POST['link'];
+        $file_name = $_FILES['sponsor_image']['name'];
+        $file_type = $_FILES['sponsor_image']['type'];
+        $file_size = $_FILES['sponsor_image']['size'];
+        $temp_name = $_FILES['sponsor_image']['tmp_name'];
+        $radioValue = $_POST['radio'];
+
+
+        $upload_to = 'images/';
+        // print_r($_FILES);
+
+      
+        if (empty($sourse_link)) {
+            $errors1[] = 'source Link is Required';
+        }
+        if ( !empty($sourse_link) &&  !empty($file_name)) {
+            if ($file_size > 2000000) {
+                $errors[] = 'File size should be less than 2Mb';
+            } else {
+                $file_uploaded = move_uploaded_file($temp_name, $upload_to . $file_name);
+                if ($file_uploaded) {
+                    echo '<script> alert("file Uploaded"); </script>';
+                }
+                $_sponsorContentService = new SponsorContentService();
+                $_sponsorContentService->__constructWithoutId($description, $sourse_link, $file_name, $radioValue);
+                $_sponsorContentService->insertContent();
+            }
+        }
+    }
+}
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -44,49 +86,65 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form>
+                <form method="POST" action="sponsorform.php" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="Title">Description</label>
-                            <input type="text" class="form-control" placeholder="Enter Overview">
+                            <input type="text" name="desc" class="form-control" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="description">Source Link</label>
-                            <input type="text" class="form-control">
+                            <?php
+                        if (!empty($errors1)) {
+                            echo '<div class="errors">';
+                            foreach ($errors1 as $error1) {
+                                echo '- ' . $error1;
+                            }
+                            echo '</div>';
+                        }
+                        ?>
+                            <input type="text" name="link" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">Image Upload</label>
+                            <?php
+                        if (!empty($errors)) {
+                            echo '<div class="errors">';
+                            foreach ($errors as $error) {
+                                echo '- ' . $error;
+                            }
+                            echo '</div>';
+                        }
+                        ?>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" name="fileupload" class="fileupload col-12" id="fileupload">
+                                    <input type="file" name="sponsor_image" class="fileupload col-12" id="fileupload">
                                 </div>
                             </div>
                         </div>
                         <div><label for="exampleInputFile">Shown Location</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault1" Value="Home">
                                 <label class="form-check-label" for="flexRadioDefault1">
-                                    Default radio
+                                    Home Page
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault2" Value="Live" checked>
                                 <label class="form-check-label" for="flexRadioDefault2">
-                                    Default checked radio
+                                    Live Page
                                 </label>
                             </div>
                         </div>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" name="sponsor_submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
-
 
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
@@ -132,7 +190,3 @@
 </body>
 
 </html>
-
-<?php
-
-?>

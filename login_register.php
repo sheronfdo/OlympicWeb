@@ -122,7 +122,7 @@ require_once('database/dbconnect.php');
             if ($rows > 0) {
                 echo "<script> window.location.href='home.php';
         </script>";
-                echo 'alert("message successfully sent")';
+            echo '<script> alert("message successsfully sent"); </script>';
             } else {
                 echo "<script> window.location.href='login_register.php?error=Incorect User name or password';</script>";
             }
