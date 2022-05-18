@@ -7,6 +7,7 @@ $errors2 = array();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['news_update'])) {
+        $_newsId = $_POST['newsId'];
         $title = $_POST['tit'];
         $description = $_POST['desc'];
         $file_name = $_FILES['news_image']['name'];
@@ -29,11 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             } else {
                 $file_uploaded = move_uploaded_file($temp_name, $upload_to . $file_name);
                 if ($file_uploaded) {
-                    echo '<script> alert("file Uploaded"); </script>';
+                    $_NewsService = new NewsService();
+                    $_NewsService->__constructWithId($_newsId, $title, $description, $file_name);
+                    $_NewsService->updateNews();
+                    echo '<script> alert("Image Updated and News Updated Successfull"); </script>';
+                    echo '<script>  window.location.href="newsManageForm.php";</script>';
                 }
-                $_NewsService = new NewsService();
-                $_NewsService->__constructWithoutId($title, $description, $file_name);
-                $_NewsService->insertNews();
+               
             }
         }
     }
@@ -86,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form method="POST" action="newsform.php" enctype="multipart/form-data">
+            <form method="POST" action="updateNews.php" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="form-group">
                         <label for="Title">Title</label>
@@ -100,6 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         }
                         ?>
                         <input type="text" name="tit" class="form-control" placeholder="Enter Title">
+                       
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
@@ -113,6 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         }
                         ?>
                         <input type="text" name="desc" class="form-control" placeholder="Enter Description">
+                        <input type="text" name="newsId" value="<?php echo $_POST['news_Id'];?>" class="form-control" placeholder="Enter Overview" hidden>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputFile">Image Upload</label>

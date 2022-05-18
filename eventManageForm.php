@@ -84,7 +84,7 @@ require_once('database/dbconnect.php');
                                                             <input type = "submit" value="Update" class = "btn btn-block bg-gradient-info btn-sm">
                                                     </form>
                                                     <?php
-                                                       //echo '<a href="updateEvent.php?event_id='.$row['id'].'"><button type = "button" class = "btn btn-block bg-gradient-info btn-sm">Update</button> </a>';
+                                                      
                                                      ?>
                                                         </td>
                                                     <td>

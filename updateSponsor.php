@@ -6,6 +6,7 @@ $errors1 = array();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['sponsor_update'])) {
+        $spnrId = $_POST['sponsorId'];
         $description = $_POST['desc'];
         $sourse_link = $_POST['link'];
         $file_name = $_FILES['sponsor_image']['name'];
@@ -28,11 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             } else {
                 $file_uploaded = move_uploaded_file($temp_name, $upload_to . $file_name);
                 if ($file_uploaded) {
-                    echo '<script> alert("file Uploaded"); </script>';
+                    $_sponsorContentService = new SponsorContentService();
+                    $_sponsorContentService->__constructWithId($spnrId, $description, $sourse_link, $file_name, $radioValue);
+                    $_sponsorContentService->updateContent();
+                    echo '<script> alert("Image Updated and Sponsor Updated Successfull"); </script>';
+                    echo '<script>  window.location.href="sponsorManageForm.php";</script>';
                 }
-                $_sponsorContentService = new SponsorContentService();
-                $_sponsorContentService->__constructWithoutId($description, $sourse_link, $file_name, $radioValue);
-                $_sponsorContentService->insertContent();
+               
             }
         }
     }
@@ -86,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form method="POST" action="sponsorform.php" enctype="multipart/form-data">
+                <form method="POST" action="updateSponsor.php" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="Title">Description</label>
@@ -119,6 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" name="sponsor_image" class="fileupload col-12" id="fileupload">
+                                    <input type="text" name="sponsorId" value="<?php echo $_POST['sponsor_Id'];?>" class="form-control" placeholder="Enter Overview" hidden>
                                 </div>
                             </div>
                         </div>

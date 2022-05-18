@@ -79,7 +79,10 @@ require_once('database/dbconnect.php');
                                                         ?>
 
                                                     <td>
-                                                        <a href="updateSponsor.php"><button type = "button" class = "btn btn-block bg-gradient-info btn-sm">Update</button> </a>
+                                                    <form action="updateSponsor.php" method="post">
+                                                            <input type="text" name="sponsor_Id" value="<?php echo $row['id']; ?>" hidden>
+                                                            <input type = "submit" value="Update" class = "btn btn-block bg-gradient-info btn-sm">
+                                                    </form>
                                                     </td>
                                                     <td>
                                                         <?php

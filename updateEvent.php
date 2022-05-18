@@ -17,11 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $file_type = $_FILES['image']['type'];
         $file_size = $_FILES['image']['size'];
         $temp_name = $_FILES['image']['tmp_name'];
-        echo $evntId.'<br>'; 
-        echo $view.'<br>'; 
-        echo $date.'<br>'; 
-        echo $time.'<br>'; 
-        echo $file_name.'<br>'; 
 
         $upload_to = 'images/';
         // print_r($_FILES);
@@ -44,13 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             } else {
                 $file_uploaded = move_uploaded_file($temp_name, $upload_to . $file_name);
                 if ($file_uploaded) {
-                    echo $evntId;
                     $_EventService1 = new EventService();
                     $_EventService1->__constructWithId($evntId,$view, $file_name, $date, $time);
                     $_EventService1->updateEvent();
-                 // echo '<script> alert($_EventService1->getId()); </script>';
-                  //  echo '<script> alert("Image Updated and Event Updated Successfull"); </script>';
-                //echo '<script>  window.location.href="eventManageForm.php";</script>';
+                    echo '<script> alert("Image Updated and Event Updated Successfull"); </script>';
+                echo '<script>  window.location.href="eventManageForm.php";</script>';
                 }
                
             }
