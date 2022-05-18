@@ -17,7 +17,7 @@
     <div class="blog">
         <?php
         $db = new dbConnect();
-        $query = "select * from news where status='1' ";
+        $query = "select * from news where status='1' ORDER BY id DESC";
         $result = $db->getfromdb($query);
         if ($rows = mysqli_num_rows($result)) {
             $i = 0;
