@@ -50,7 +50,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="./index2.html" class="nav-link">
+                                        <a href="./eventManageForm.php" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Manage Event</p>
                                         </a>
@@ -73,7 +73,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="./index2.html" class="nav-link">
+                                        <a href="./newsManageForm.php" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Manage News</p>
                                         </a>
@@ -96,7 +96,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="./index2.html" class="nav-link">
+                                        <a href="./sponsorManageForm.php" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Manage Sponsor</p>
                                         </a>
