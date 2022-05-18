@@ -7,7 +7,7 @@ $errors2 = array();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['news_update'])) {
-        $_newsId = $_POST['newsId'];
+        $_newsId = $_POST['news_Id'];
         $title = $_POST['tit'];
         $description = $_POST['desc'];
         $file_name = $_FILES['news_image']['name'];
@@ -33,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     $_NewsService = new NewsService();
                     $_NewsService->__constructWithId($_newsId, $title, $description, $file_name);
                     $_NewsService->updateNews();
-                    echo '<script> alert("Image Updated and News Updated Successfull"); </script>';
-                    echo '<script>  window.location.href="newsManageForm.php";</script>';
+                    //echo '<script> alert("Image Updated and News Updated Successfull"); </script>';
+                    //echo '<script>  window.location.href="newsManageForm.php";</script>';
                 }
                
             }
@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         }
                         ?>
                         <input type="text" name="desc" class="form-control" placeholder="Enter Description">
-                        <input type="text" name="newsId" value="<?php echo $_POST['news_Id'];?>" class="form-control" placeholder="Enter Overview" hidden>
+                        <input type="text" name="news_Id" value="<?php echo $_POST['newsId'];?>" class="form-control" placeholder="Enter Overview" hidden>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputFile">Image Upload</label>
