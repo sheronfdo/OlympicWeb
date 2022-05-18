@@ -79,15 +79,20 @@ require_once('database/dbconnect.php');
                                                         ?>
 
                                                     <td>
-                                                        <a href="updateEvent.php"><button type = "button" class = "btn btn-block bg-gradient-info btn-sm">Update</button> </a>
-                                                    </td>
+                                                    <form action="updateEvent.php" method="post">
+                                                            <input type="text" name="evntId" value="<?php echo $row['id']; ?>" hidden>
+                                                            <input type = "submit" value="Update" class = "btn btn-block bg-gradient-info btn-sm">
+                                                    </form>
+                                                    <?php
+                                                       //echo '<a href="updateEvent.php?event_id='.$row['id'].'"><button type = "button" class = "btn btn-block bg-gradient-info btn-sm">Update</button> </a>';
+                                                     ?>
+                                                        </td>
                                                     <td>
                                                         <?php
                                                                                                             
                                                             echo '<a href="deleteEvent.php?eventid='.$row['id'].'"><button type="button" class="btn btn-block bg-gradient-danger btn-sm">Remove</button></a>';
                                                        
-                                                        ?>
-                                                                                                            
+                                                      ?>                                                                                                         
                                                     </td>
                                                     <?php
                                                     echo '</tr>';

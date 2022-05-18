@@ -1,6 +1,7 @@
 <?php
 require_once('service/eventService.php');
 
+
 $errors = array();
 $errors1 = array();
 $errors2 = array();
@@ -8,6 +9,7 @@ $errors3 = array();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['event_update'])) {
+        $evntId = $_POST['evntId'];
         $view = $_POST['overview'];
         $date = $_POST['date'];
         $time = $_POST['time'];
@@ -15,6 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $file_type = $_FILES['image']['type'];
         $file_size = $_FILES['image']['size'];
         $temp_name = $_FILES['image']['tmp_name'];
+        echo $evntId.'<br>'; 
+        echo $view.'<br>'; 
+        echo $date.'<br>'; 
+        echo $time.'<br>'; 
+        echo $tfile_nameime.'<br>'; 
 
         $upload_to = 'images/';
         // print_r($_FILES);
@@ -37,10 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             } else {
                 $file_uploaded = move_uploaded_file($temp_name, $upload_to . $file_name);
                 if ($file_uploaded) {
-                    $_EventService = new EventService();
-                    $_EventService->__constructWithoutId($view, $file_name, $date, $time);
-                    $_EventService->insertEvent();
-                    echo '<script> alert("Image Uploaded and Event Added Successfull"); </script>';
+                    echo $evntId;
+                    $_EventService1 = new EventService();
+                    $_EventService1->setId($evntId);
+                    $_EventService1->__constructWithoutId($view, $file_name, $date, $time);
+                  echo $_EventService1->getId();
+                 // echo '<script> alert($_EventService1->getId()); </script>';
+                  //  echo '<script> alert("Image Updated and Event Updated Successfull"); </script>';
+                //echo '<script>  window.location.href="eventManageForm.php";</script>';
                 }
                
             }
@@ -86,6 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </head>
 
 <body>
+
     <div><?php include('common/sidebar.php'); ?></div>
     <div>
 
@@ -96,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="eventform.php" method="POST" enctype="multipart/form-data">
+                <form action="eventManageForm.php" method="POST" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="Title">Overview</label>
