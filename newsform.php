@@ -29,11 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             } else {
                 $file_uploaded = move_uploaded_file($temp_name, $upload_to . $file_name);
                 if ($file_uploaded) {
-                    echo '<script> alert("file Uploaded"); </script>';
+                    $_NewsService = new NewsService();
+                    $_NewsService->__constructWithoutId($title, $description, $file_name);
+                    $_NewsService->insertNews();
+                    echo '<script> alert("Image Uploaded and News Added Successfull"); </script>';
                 }
-                $_NewsService = new NewsService();
-                $_NewsService->__constructWithoutId($title, $description, $file_name);
-                $_NewsService->insertNews();
+              
             }
         }
     }
@@ -101,8 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         ?>
                         <input type="text" name="tit" class="form-control" placeholder="Enter Title">
                     </div>
-                    <div class="form-group">
-                        <label for="description">Description</label>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
                         <?php
                         if (!empty($errors2)) {
                             echo '<div class="errors">';
@@ -112,8 +114,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             echo '</div>';
                         }
                         ?>
-                        <input type="text" name="desc" class="form-control" placeholder="Enter Description">
+                        <textarea class="form-control" name="desc"  placeholder="Enter Description" rows="8"></textarea>
                     </div>
+
                     <div class="form-group">
                         <label for="exampleInputFile">Image Upload</label>
                         <?php

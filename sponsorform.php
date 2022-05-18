@@ -28,11 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             } else {
                 $file_uploaded = move_uploaded_file($temp_name, $upload_to . $file_name);
                 if ($file_uploaded) {
-                    echo '<script> alert("file Uploaded"); </script>';
+                    $_sponsorContentService = new SponsorContentService();
+                    $_sponsorContentService->__constructWithoutId($description, $sourse_link, $file_name, $radioValue);
+                    $_sponsorContentService->insertContent();
+                    echo '<script> alert("Image Uploaded and Sponsor Added Successfull"); </script>';
                 }
-                $_sponsorContentService = new SponsorContentService();
-                $_sponsorContentService->__constructWithoutId($description, $sourse_link, $file_name, $radioValue);
-                $_sponsorContentService->insertContent();
+               
             }
         }
     }

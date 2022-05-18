@@ -37,11 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             } else {
                 $file_uploaded = move_uploaded_file($temp_name, $upload_to . $file_name);
                 if ($file_uploaded) {
-                    echo '<script> alert("file Uploaded"); </script>';
+                    $_EventService = new EventService();
+                    $_EventService->__constructWithoutId($view, $file_name, $date, $time);
+                    $_EventService->insertEvent();
+                    echo '<script> alert("Image Uploaded and Event Added Successfull"); </script>';
                 }
-                $_EventService = new EventService();
-                $_EventService->__constructWithoutId($view, $file_name, $date, $time);
-                $_EventService->insertEvent();
+               
             }
         }
     }
