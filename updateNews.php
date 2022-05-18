@@ -33,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     $_NewsService = new NewsService();
                     $_NewsService->__constructWithId($_newsId, $title, $description, $file_name);
                     $_NewsService->updateNews();
-                    //echo '<script> alert("Image Updated and News Updated Successfull"); </script>';
-                    //echo '<script>  window.location.href="newsManageForm.php";</script>';
+                    echo '<script> alert("Image Updated and News Updated Successfull"); </script>';
+                    echo '<script>  window.location.href="newsManageForm.php";</script>';
                 }
                
             }
