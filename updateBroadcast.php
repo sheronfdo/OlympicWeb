@@ -1,30 +1,36 @@
 <?php
 require_once('service/broadcastService.php');
 
+
 $errors1 = array();
 $errors2 = array();
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (isset($_POST['broadcast_submit'])) {
-        $evtId = $_POST['eventId'];
-        $link = $_POST['srcLink'];
 
-        if (empty($evtId)) {
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    if (isset($_POST['broadcast_update'])) {
+        $broadcastId = $_POST['broadId'];
+        $evntId = $_POST['eventId'];
+        $link = $_POST['srcLink'];
+      
+        if (empty($evntId)) {
             $errors1[] = 'Id is Required';
         }
         if (empty($link)) {
             $errors2[] = 'Link is Required';
         }
-        if (!empty($evtId) && !empty($link)) {    
-
+      
+        if (!empty($broadcastId) && !empty($evntId) && !empty($link)) {
+              
                     $_broadcastService = new BroadcastService();
-                    $_broadcastService->__constructWithoutId($evtId,$link);
-                    $_broadcastService->insertBroadcast();
-                    echo '<script> alert("Broadcast Added Successfull"); </script>';            
-            
+                    $_broadcastService->__constructWithId($broadcastId,$evntId, $link);
+                    $_broadcastService->updateBroadcast();
+                    echo '<script> alert("Broadcast Updated Successfull"); </script>';
+                echo '<script>  window.location.href="broadcastManageForm.php";</script>';
+                
+               
+            }
         }
     }
-}
 
 ?>
 <!doctype html>
@@ -60,11 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     <!--cusstom css-->
     <link rel="stylesheet" href="css/news.css">
-    <title>News</title>
+    <title>Update Event</title>
 </head>
 
 <body>
-    <div><?php include('common/sidebar.php'); ?></div>
+<div><?php include('common/sidebar.php'); ?></div>
     <div>
 
         <div class="col-11 col-xxl-5 col-xl-6 col-lg-7 col-md-8 col-sm-10 news-form">
@@ -74,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="broadcastform.php" method="POST">
+                <form action="updateBroadcast.php" method="POST">
                     <div class="card-body">
                     <label for="Title">Select Event</label>
                     <?php
@@ -116,6 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             }
                             ?>
                             <input type="text" name="srcLink" class="form-control" placeholder="Enter Source Link">
+                            <input type="text" name="broadId" value="<?php echo $_POST['broad_id'];?>" class="form-control" placeholder="Enter Overview" hidden>
                         </div>
                     </div>
                     <!-- /.card-body -->

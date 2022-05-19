@@ -58,7 +58,7 @@
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
+    <a href="dashboard.php" class="brand-link">
         <!--<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
         <span class="brand-text font-weight-light">Olymic</span>
     </a>
@@ -84,7 +84,6 @@
                             <a href="#" class="d-block"><?php echo "<p class='d-block'>".$_SESSION['sess_admin_username']."</p>";  ?></a>
                         </div>
                     </div>
-
 
 
                     <!-- Sidebar Menu -->
@@ -191,6 +190,29 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-bullhorn" aria-hidden="true"></i>
+                                    <p>
+                                        Broadcast Manage
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview" style="display: none;">
+                                    <li class="nav-item">
+                                        <a href="../broadcastform.php" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Broadcast</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../broadcastManageForm.php" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Manage Broadcast</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../logout.php" class="nav-link">
                                     <i class="nav-icon far fa-circle text-info"></i>
                                     <p>Log Out</p>
@@ -218,9 +240,6 @@
 </aside>
 
 
-
-
-
 <div class="content-wrapper">
 <div class="row">
           <div class="col-lg-3 col-6">
@@ -229,7 +248,7 @@
               <div class="inner">
                 <h3>150</h3>
 
-                <p>New Orders</p>
+                <p>Admin Registrations</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -244,7 +263,7 @@
               <div class="inner">
                 <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-                <p>Bounce Rate</p>
+                <p>User Registrations</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -259,7 +278,7 @@
               <div class="inner">
                 <h3>44</h3>
 
-                <p>User Registrations</p>
+                <p>Events count</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -274,7 +293,7 @@
               <div class="inner">
                 <h3>65</h3>
 
-                <p>Unique Visitors</p>
+                <p>News Count</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
