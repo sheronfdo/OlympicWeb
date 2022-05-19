@@ -23,5 +23,11 @@
 .blog {
     margin: auto;
     padding: 5% 10%;
-    height: 1200px;
+    height: 1100px;
+}
+
+.titt {
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
 }
