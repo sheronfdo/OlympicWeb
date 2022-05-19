@@ -14,7 +14,6 @@
           <li><a href="./eventpage.php" class="nav-link px-2 text-white">Event</a></li>
           <li><a href="./aboutus.php" class="nav-link px-2 text-white">About</a></li>
         </ul>
-
         <div class="text-end">
           <a href="login_register.php"><button type="button" class="btn btn-outline-light me-2">Login</button></a>
           <a href="login_register.php"><button type="button" class="btn btn-warning">Sign-up</button></a>
