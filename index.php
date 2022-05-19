@@ -1,4 +1,4 @@
-
+<?php require_once('database/dbconnect.php'); ?>
 <!doctype html>
 <html lang="en">
 
@@ -8,11 +8,56 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="css/news.css">
 </head>
 
 <body>
   <?php include('common/header.php'); ?>
+  <h2 class="titt">Latest News</h2>
+  <div class="blog">
+        <?php
+        $db = new dbConnect();
+        $query = "select * from news where status='1' ORDER BY id DESC limit 0,8";
+        $result = $db->getfromdb($query);
+        if ($rows = mysqli_num_rows($result)) {
+            $i = 0;
+            while ($row = mysqli_fetch_array($result)) {
+                echo '<a href="newsvisible.php?newsid='.$row['id'].'"><div class="card post" style="width: 20rem;">
+            <div class="card-body"><h5 class="card-title">' . substr($row['title'], 0, 60) . '</h5></div>
+            <img src="images/' . $row['imageName'] . '" class="card-img-top" alt="event image">
+            <div class="card-body">
+              <p class="card-text">' . substr($row['discription'], 0, 60) . '...</p>
+            </div>
+            </div></a>';
+            }
+        }
+
+        ?>
+
+    </div>
+    <h2 class="titt">Featured Events</h2>
+    <div class="blog">
+        <?php
+        $db = new dbConnect();
+        $query = "select * from event where status='1' ORDER BY id DESC limit 0,8";
+        $result = $db->getfromdb($query);
+        if ($rows = mysqli_num_rows($result)) {
+            $i = 0;
+            while ($row = mysqli_fetch_array($result)) {
+                echo '<a href="eventvisible.php?eventid='.$row['id'].'"><div class="card post" style="width: 20rem;">
+            <div class="card-body"><h5 class="card-title">' . substr($row['overview'], 0, 60) . '</h5></div>
+            <img src="images/' . $row['imageName'] . '" class="card-img-top" alt="event image">
+            </div></a>';
+            }
+        }
+        ?>
+
+    </div>
+
+
+
+
+
   <?php include('common/footer.php'); ?>
 
 
