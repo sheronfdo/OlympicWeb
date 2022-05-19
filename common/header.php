@@ -1,4 +1,5 @@
-`<html>
+
+<html>
 <body>
 <header class="p-3 bg-dark text-white">
     <div class="container">
@@ -13,11 +14,24 @@
           <li><a href="./newspage.php" class="nav-link px-2 text-white">News</a></li>
           <li><a href="./eventpage.php" class="nav-link px-2 text-white">Event</a></li>
           <li><a href="./aboutus.php" class="nav-link px-2 text-white">About</a></li>
+          <li><?php 
+              if(isset($_SESSION)){
+                session_stop();
+                echo "<p class='nav-link px-2 text-white' style='margin-left:90px;'> Hello </p>";
+
+              }else{
+                 session_start();
+                echo "<p class='nav-link px-2 text-white' style='margin-left:90px;'> Hello ".$_SESSION['sess_username']."</p>"; 
+              }
+              ?>
+          
+        </li>
         </ul>
 
         <div class="text-end">
           <a href="login_register.php"><button type="button" class="btn btn-outline-light me-2">Login</button></a>
           <a href="login_register.php"><button type="button" class="btn btn-warning">Sign-up</button></a>
+         
         </div>
       </div>
     </div>
