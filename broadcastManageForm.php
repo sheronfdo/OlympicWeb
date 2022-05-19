@@ -3,6 +3,7 @@ require_once('service/broadcastService.php');
 ?>
 
 <html>
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -35,79 +36,83 @@ require_once('service/broadcastService.php');
     <link rel="stylesheet" href="css/news.css">
     <title>Broadcast Manage</title>
 </head>
-<body>    
-<div><?php include('common/sidebar.php'); ?></div>
-<!-- Main content -->
-<section class="content col-9" style="float:right;">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-12">
 
-                                <!-- /.card -->
+<body>
+    <div><?php include('common/sidebar.php'); ?></div>
+    <!-- Main content -->
+    <div class="content-wrapper content_wrapper_x">
+        <section class="content col-12" style="float:right;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
 
-                                <div class="card">
-                                   
-                                    <!-- /.card-header -->
-                                    <div class="card-body">
-                                        <table id="example1" class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Id</th>
-                                                    <th>Event Id</th>
-                                                    <th>Video Source Link</th>
-                                                    <th>Update</th>
-                                                    <th>Remove</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                               $db = new dbConnect();
-                                               $result = $db->getfromdb("SELECT id,Event_id,videoSrc FROM broadcast where status='1'");
-                                        
-                                                if ($row = mysqli_num_rows($result)) {
+                        <!-- /.card -->
 
-                                                    while ($row = mysqli_fetch_array($result)) {
-                                                        echo '<tr>';
-                                                        echo '<td>' . $row['id'] . '</td>';
-                                                        echo '<td>' . $row['Event_id'] . '</td>';
-                                                        echo '<td>' . $row['videoSrc'] . '</td>';
-                                                        ?>
+                        <div class="card">
 
-                                                    <td>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <h2>Broadcast Manage Form</h2>
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Event Id</th>
+                                            <th>Video Source Link</th>
+                                            <th>Update</th>
+                                            <th>Remove</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $db = new dbConnect();
+                                        $result = $db->getfromdb("SELECT id,Event_id,videoSrc FROM broadcast where status='1'");
+
+                                        if ($row = mysqli_num_rows($result)) {
+
+                                            while ($row = mysqli_fetch_array($result)) {
+                                                echo '<tr>';
+                                                echo '<td>' . $row['id'] . '</td>';
+                                                echo '<td>' . $row['Event_id'] . '</td>';
+                                                echo '<td>' . $row['videoSrc'] . '</td>';
+                                        ?>
+
+                                                <td>
                                                     <form action="updateBroadcast.php" method="post">
-                                                            <input type="text" name="broad_id" value="<?php echo $row['id']; ?>" hidden>
-                                                            <input type = "submit" value="Update" class = "btn btn-block bg-gradient-info btn-sm">
+                                                        <input type="text" name="broad_id" value="<?php echo $row['id']; ?>" hidden>
+                                                        <input type="submit" value="Update" class="btn btn-block bg-gradient-info btn-sm">
                                                     </form>
-                                                
-                                                        </td>
-                                                    <td>
-                                                        <?php
-                                                                                                            
-                                                            echo '<a href="deleteBroadcast.php?broadid='.$row['id'].'"><button type="button" class="btn btn-block bg-gradient-danger btn-sm">Remove</button></a>';
-                                                       
-                                                      ?>                                                                                                         
-                                                    </td>
-                                                    <?php
-                                                    echo '</tr>';
-                                                }
-                                                echo '</table>';
-                                            }
-                                            ?>
-                                            </tbody>
 
-                                        </table>
-                                    </div>
-                                    <!-- /.card-body -->
-                                </div>
-                                <!-- /.card -->
+                                                </td>
+                                                <td>
+                                                    <?php
+
+                                                    echo '<a href="deleteBroadcast.php?broadid=' . $row['id'] . '"><button type="button" class="btn btn-block bg-gradient-danger btn-sm">Remove</button></a>';
+
+                                                    ?>
+                                                </td>
+                                        <?php
+                                                echo '</tr>';
+                                            }
+                                            echo '</table>';
+                                        }
+                                        ?>
+                                    </tbody>
+
+                                </table>
                             </div>
-                            <!-- /.col -->
+                            <!-- /.card-body -->
                         </div>
-                        <!-- /.row -->
+                        <!-- /.card -->
                     </div>
-                    <!-- /.container-fluid -->
-                </section>
-                 <!-- jQuery -->
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+    </div>
+    <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
@@ -149,6 +154,7 @@ require_once('service/broadcastService.php');
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
 
-        
-                             </body>
-                                        </html>
+
+</body>
+
+</html>

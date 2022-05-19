@@ -363,11 +363,3 @@ form.sign-up-form {
         left: 50%;
     }
 }
-
-.admin_form {
-    width: 300px;
-    height: 500px;
-    margin: auto;
-    border: 1px solid gray;
-    background-color: aquamarine;
-}

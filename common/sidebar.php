@@ -163,7 +163,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="../logout.php" class="nav-link">
+                                <a href="./logout.php" class="nav-link">
                                     <i class="nav-icon far fa-circle text-info"></i>
                                     <p>Log Out</p>
                                 </a>

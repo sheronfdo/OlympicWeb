@@ -40,75 +40,79 @@ require_once('database/dbconnect.php');
 
 <body>
     <div><?php include('common/sidebar.php'); ?></div>
-    <section class="content col-9" style="float:right;">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-12">
 
-                                <!-- /.card -->
+    <div class="content-wrapper content_wrapper_x">
+        <section class="content col-12" style="float:right;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
 
-                                <div class="card">
-                                   
-                                    <!-- /.card-header -->
-                                    <div class="card-body">
-                                        <table id="example1" class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Id</th>
-                                                    <th>Username</th>
-                                                    <th>Email</th>                        
-                                                    <th>Update</th>
-                                                    <th>Remove</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                               $db = new dbConnect();
-                                               $result = $db->getfromdb("SELECT id,userName,email FROM administrator where status='1'");
-                                        
-                                                if ($row = mysqli_num_rows($result)) {
+                        <!-- /.card -->
 
-                                                    while ($row = mysqli_fetch_array($result)) {
-                                                        echo '<tr>';
-                                                        echo '<td>' . $row['id'] . '</td>';
-                                                        echo '<td>' . $row['userName'] . '</td>';
-                                                        echo '<td>' . $row['email'] . '</td>';                                               
-                                                        ?>
+                        <div class="card">
 
-                                                    <td>
-                                                     <form action="updateAdmin.php" method="post">
-                                                            <input type="text" name="admin_id" value="<?php echo $row['id'];?>" hidden>
-                                                            <input type = "submit" value="Update" class = "btn btn-block bg-gradient-info btn-sm">
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <h2>Administrator Manage Form</h2>
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                            <th>Update</th>
+                                            <th>Remove</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $db = new dbConnect();
+                                        $result = $db->getfromdb("SELECT id,userName,email FROM administrator where status='1'");
+
+                                        if ($row = mysqli_num_rows($result)) {
+
+                                            while ($row = mysqli_fetch_array($result)) {
+                                                echo '<tr>';
+                                                echo '<td>' . $row['id'] . '</td>';
+                                                echo '<td>' . $row['userName'] . '</td>';
+                                                echo '<td>' . $row['email'] . '</td>';
+                                        ?>
+
+                                                <td>
+                                                    <form action="updateAdmin.php" method="post">
+                                                        <input type="text" name="admin_id" value="<?php echo $row['id']; ?>" hidden>
+                                                        <input type="submit" value="Update" class="btn btn-block bg-gradient-info btn-sm">
                                                     </form>
-                                                    </td>
-                                                    <td>
-                                                        <?php
-                                                                                                            
-                                                            echo '<a href="deleteAdmin.php?adminId='.$row['id'].'"><button type="button" class="btn btn-block bg-gradient-danger btn-sm">Remove</button></a>';
-                                                       
-                                                        ?>
-                                                                                                            
-                                                    </td>
+                                                </td>
+                                                <td>
                                                     <?php
-                                                    echo '</tr>';
-                                                }
-                                                echo '</table>';
-                                            }
-                                            ?>
-                                            </tbody>
 
-                                        </table>
-                                    </div>
-                                    <!-- /.card-body -->
-                                </div>
-                                <!-- /.card -->
+                                                    echo '<a href="deleteAdmin.php?adminId=' . $row['id'] . '"><button type="button" class="btn btn-block bg-gradient-danger btn-sm">Remove</button></a>';
+
+                                                    ?>
+
+                                                </td>
+                                        <?php
+                                                echo '</tr>';
+                                            }
+                                            echo '</table>';
+                                        }
+                                        ?>
+                                    </tbody>
+
+                                </table>
                             </div>
-                            <!-- /.col -->
+                            <!-- /.card-body -->
                         </div>
-                        <!-- /.row -->
+                        <!-- /.card -->
                     </div>
-                    <!-- /.container-fluid -->
-                </section>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+    </div>
 
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>

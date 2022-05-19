@@ -40,7 +40,8 @@ require_once('database/dbconnect.php');
 
 <body>
     <div><?php include('common/sidebar.php'); ?></div>
-    <section class="content col-9" style="float:right;">
+    <div class="content-wrapper content_wrapper_x">
+    <section class="content col-12" style="float:center;">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12">
@@ -51,6 +52,7 @@ require_once('database/dbconnect.php');
                                    
                                     <!-- /.card-header -->
                                     <div class="card-body">
+                                        <h2>News Manage Form</h2>
                                         <table id="example1" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>

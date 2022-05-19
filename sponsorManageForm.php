@@ -39,7 +39,8 @@ require_once('database/dbconnect.php');
 <body>    
 <div><?php include('common/sidebar.php'); ?></div>
 <!-- Main content -->
-<section class="content col-9" style="float:right;">
+<div class="content-wrapper content_wrapper_x">
+<section class="content col-12" style="float:right;">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12">
@@ -50,6 +51,7 @@ require_once('database/dbconnect.php');
                                    
                                     <!-- /.card-header -->
                                     <div class="card-body">
+                                    <h2>Sponsor Manage Form</h2>
                                         <table id="example1" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
@@ -112,6 +114,7 @@ require_once('database/dbconnect.php');
                     </div>
                     <!-- /.container-fluid -->
                 </section>
+                </div> 
                  <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->

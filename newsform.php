@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <body>
     <div><?php include('common/sidebar.php'); ?></div>
-
+    <div class="content-wrapper content_wrapper_x">
     <div class="col-11 col-xxl-5 col-xl-6 col-lg-7 col-md-8 col-sm-10 news-form">
         <div class="card card-primary">
             <div class="card-header">
@@ -143,6 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             </form>
         </div>
     </div>
+                    </div>
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
