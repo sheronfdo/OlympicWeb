@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('service/userService.php');
 require_once('model/user.php');
 require_once('database/dbconnect.php');
@@ -112,19 +113,21 @@ require_once('database/dbconnect.php');
             echo '<script> alert("Register Successfully"); </script>';
         }
     }
+
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (isset($_POST['loginSubmit'])) {
             $username1 = stripslashes($_POST['uname']);
             $password1 = stripslashes($_POST['pass']);
 
             $db = new dbConnect();
-            $result = $db->getfromdb("SELECT userName,password FROM user WHERE userName='$username1' && password='$password1'");
-            $rows = mysqli_num_rows($result);
-            if ($rows > 0) {
-                echo "<script> window.location.href='index.php';
-        </script>";
+            $result = $db->getfromdb("SELECT id,userName,password FROM user WHERE userName='$username1' && password='$password1'");
+
+           if (mysqli_num_rows($result) > 0) {
+               
             echo '<script> alert("Login Successfully"); </script>';
-            } else {
+            echo "<script> window.location.href='index.php';
+            </script>";
+            } else if(mysqli_num_rows($result) == 0){
                 echo "<script> window.location.href='login_register.php?error=Incorect User name or password';</script>";
             }
         }

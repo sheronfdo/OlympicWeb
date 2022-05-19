@@ -1,0 +1,28 @@
+body {
+    background-color: #333;
+}
+
+.admin_form {
+    padding: 15px;
+    width: 300px;
+    height: 360px;
+    margin: auto;
+    margin-top: 80px;
+    border: 1px solid gray;
+    border-radius: 6px;
+}
+
+.title {
+    font-size: 2.2rem;
+    color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+}
+
+.form-label,
+.form-check-label {
+    color: aliceblue;
+}
+
+.errors {
+    color: red;
+}

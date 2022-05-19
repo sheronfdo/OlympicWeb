@@ -8,24 +8,24 @@ $errors3 = array();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['admin_update'])) {
-        $_adminId = $_POST['admin_Id'];
-        $username = $_POST['uname'];
-        $email = $_POST['email'];
-        $password = $_POST['pass'];
+        $adminId = $_POST['adnId'];
+        $_username = $_POST['uname'];
+        $_email = $_POST['email'];
+        $_password = $_POST['pass'];
        
-        if (empty($username)) {
+        if (empty($_username)) {
             $errors1[] = 'username is Required';
         }
-        if (empty($email)) {
+        if (empty($_email)) {
             $errors2[] = 'email is Required';
         }
-        if (empty($password)) {
+        if (empty($_password)) {
             $errors3[] = 'password is Required';
         }
-        if (!empty($username) && !empty($email) && !empty($password)) {
+        if (!empty($_username) && !empty($_email) && !empty($_password)) {
         
                     $_administratorService = new AdministratorService();
-                    $_administratorService->__constructWithId($_adminId, $username, $email, $password);
+                    $_administratorService->__constructWithId($adminId, $_username, $_email, $_password);
                     $_administratorService->updateAdministrator();
                     echo '<script> alert("Admin Updated Successfull"); </script>';
                 echo '<script>  window.location.href="adminManageForm.php";</script>';     
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     <!--cusstom css-->
     <link rel="stylesheet" href="css/news.css">
-    <title>Update Event</title>
+    <title>Update Admin</title>
 </head>
 
 <body>
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="adminManageForm.php" method="POST">
+                <form action="updateAdmin.php" method="POST">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="Title">Username</label>
@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             }
                             ?>
                             <input type="text" name="uname" class="form-control" placeholder="Enter Username">
-                            <input type="text" name="admin_Id" value="<?php echo $_POST['admin_id'];?>" class="form-control" placeholder="Enter Overview" hidden>
+                            <input type="text" name="adnId" value="<?php echo $_POST['admin_id'];?>" class="form-control" placeholder="Enter Overview" hidden>
                         </div>
                         <div class="form-group">
                             <label for="Title">Email</label>
