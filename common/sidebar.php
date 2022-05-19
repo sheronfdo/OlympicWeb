@@ -39,7 +39,7 @@
 
 
 
-                    
+
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -139,6 +139,29 @@
                                         <a href="./adminManageForm.php" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Manage Administrator</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-bullhorn" aria-hidden="true"></i>
+                                    <p>
+                                        Broadcast Manage
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview" style="display: none;">
+                                    <li class="nav-item">
+                                        <a href="./broadcastform.php" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Broadcast</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="./broadcastManageForm.php" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Manage Broadcast</p>
                                         </a>
                                     </li>
                                 </ul>
