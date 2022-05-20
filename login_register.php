@@ -94,7 +94,7 @@ require_once('database/dbconnect.php');
                     <h3>One of Us?</h3>
                     <button class="btn transparent" id="sign-in-btn">Sign in</button>
                 </div>
-                <img src="images/—Pngtree—pole vaulting volleyball tennis weight_7579385.png" class="image" alt="">
+                <img src="images/—Pngtree—basketball player color silhouette_6551187.png" class="image" alt="">
             </div>
         </div>
     </div>
