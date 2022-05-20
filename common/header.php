@@ -1,6 +1,21 @@
 
-<html>
-<body>
+
+<div class="sponserAdd">
+<?php
+    $db = new dbConnect();
+    $query = "SELECT srcLink,imageName,shownLocation from sponsoredcontent where status='1'"; 
+    $result = $db->getfromdb($query);
+    
+    if ($row = mysqli_num_rows($result)) {
+        if ($row = mysqli_fetch_array($result)) {
+            $src_Link=$row['srcLink'];
+            $image_Name=$row['imageName'];
+        }
+    }
+ ?>
+ <a href="<?php echo $src_Link; ?>"><img src="images/<?php echo $image_Name?>" style="width:420px; height:90px;" alt="image name"></a>
+</div>
+
 <header class="p-3 bg-dark text-white">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -18,11 +33,8 @@
         </ul>
         <div class="text-end">
           <a href="login_register.php"><button type="button" class="btn btn-outline-light me-2">Login</button></a>
-          <a href="login_register.php"><button type="button" class="btn btn-warning">Sign-up</button></a>
-         
+          <a href="login_register.php"><button type="button" class="btn btn-warning">Sign-up</button></a>   
         </div>
       </div>
     </div>
   </header>
-</body>
-</html>

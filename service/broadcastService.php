@@ -20,7 +20,9 @@ class BroadcastService extends Broadcast
 
     public function insertBroadcast()
     {
+        $query1 = "UPDATE broadcast set status='0'";
         $query = "INSERT INTO `broadcast`(`Event_id`, `videoSrc`) VALUES ('" . $this->test_input($this->getEventId()) . "','" . $this->test_input($this->getSrcLink()) . "')";
+        $this->db->insertIntoDb($query1);
         $this->db->insertIntoDb($query);
     }
 

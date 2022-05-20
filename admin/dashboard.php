@@ -1,7 +1,5 @@
 <?php
-// include('../database/dbconnect.php');
-//  include('../service/administratorService.php');
-// include('../model/administrator.php');
+
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -16,10 +14,6 @@ if (!isset($_SESSION['sess_admin_id']) || (trim($_SESSION['sess_admin_id']) == '
 
     exit();
 }
-
-
-//echo "<h1>This is Home Page</h1>";
-//echo "<p>Hello ".$_SESSION['sess_admin_username']."</p>";
 
 ?>
 <!doctype html>

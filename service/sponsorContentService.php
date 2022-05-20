@@ -20,7 +20,9 @@ class SponsorContentService extends SponsorContent
 
     public function insertContent()
     {
+        $query1 = "UPDATE sponsoredcontent set status='0'";
         $query = "INSERT INTO `sponsoredcontent`(`description`, `srcLink`, `imageName`, `shownLocation`) VALUES ('" . $this->test_input($this->getDescription()) . "','" . $this->test_input($this->getSourceLink()) . "','" . $this->test_input($this->getImageName()) . "','" . $this->test_input($this->getShownLocation()) . "')";
+        $this->db->insertIntoDb($query1);
         $this->db->insertIntoDb($query);
     }
 

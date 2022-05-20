@@ -1,39 +1,37 @@
 
 <html>
 <body>
-  <footer class="_footer">
+<footer class="_footer">
   	 <div class="_container">
   	 	<div class="_row">
   	 		<div class="_footer-col">
-  	 			<h4>company</h4>
+  	 			<h4>Olympic Games</h4>
   	 			<ul>
   	 				<li><a href="./aboutus.php">about us</a></li>
-  	 				<li><a href="#">our services</a></li>
-  	 				<li><a href="#">privacy policy</a></li>
-  	 				<li><a href="#">affiliate program</a></li>
+  	 				<li><a href="#">Paris 2024</a></li>
+  	 				<li><a href="#">Results & Medals</a></li>
+  	 				<li><a href="#">Replays & Highlights</a></li>
   	 			</ul>
   	 		</div>
   	 		<div class="_footer-col">
-  	 			<h4>get help</h4>
+  	 			<h4>Olympic Channel</h4>
   	 			<ul>
-  	 				<li><a href="#">FAQ</a></li>
-  	 				<li><a href="#">shipping</a></li>
-  	 				<li><a href="#">returns</a></li>
-  	 				<li><a href="#">order status</a></li>
-  	 				<li><a href="#">payment options</a></li>
+  	 				<li><a href="#">TV Channel</a></li>
+  	 				<li><a href="#">Live Events</a></li>
+  	 				<li><a href="#">Original Series</a></li>
   	 			</ul>
   	 		</div>
   	 		<div class="_footer-col">
-  	 			<h4>online shop</h4>
+  	 			<h4>News</h4>
   	 			<ul>
-  	 				<li><a href="#">watch</a></li>
-  	 				<li><a href="#">bag</a></li>
-  	 				<li><a href="#">shoes</a></li>
-  	 				<li><a href="#">dress</a></li>
+  	 				<li><a href="#">Podcast</a></li>
+  	 				<li><a href="#">Topics</a></li>
+					   <li><a href="#">Sports</a></li>
+  	 				<li><a href="#">Athletes</a></li>
   	 			</ul>
   	 		</div>
   	 		<div class="_footer-col">
-  	 			<h4>follow us</h4>
+  	 			<h4>Explore</h4>
   	 			<div class="_social-links">
   	 				<a href="#"><i class="fab fa-facebook-f"></i></a>
   	 				<a href="#"><i class="fab fa-twitter"></i></a>
