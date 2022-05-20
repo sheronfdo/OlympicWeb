@@ -5,34 +5,42 @@
 
 .liveBrod {
 
+   
     width: 1280px;
     height: 720px;
 }
+.vid{
+    margin: 5px auto;
+    border: 2px soli red;
+}
 @media only screen and (max-width: 1920px) {
     .liveBrod {
-margin: auto 20px;
+        margin: 5px auto;
         width: 1850px;
         height: 900px;
     }
-  }
+}
+
 @media only screen and (max-width: 1400px) {
     .liveBrod {
-        margin: auto 20px;
+        margin: 5px auto;
         width: 720px;
         height: 480px;
     }
-  }
-  @media only screen and (max-width: 750px) {
+}
+
+@media only screen and (max-width: 750px) {
     .liveBrod {
 
         width: 640px;
         height: 380px;
     }
-  }
-  @media only screen and (max-width: 680px) {
+}
+
+@media only screen and (max-width: 680px) {
     .liveBrod {
 
         width: 420px;
         height: 240px;
     }
-  }
+}
