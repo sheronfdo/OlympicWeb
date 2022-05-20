@@ -87,14 +87,14 @@ require_once('database/dbconnect.php');
                     <h3>New here?</h3>
                     <button class="btn transparent" id="sign-up-btn">Sign up</button>
                 </div>
-                <img src="images/undraw_online_groceries_a02y.png" class="image" alt="">
+                <img src="images/—Pngtree—badminton fitness little boy_4588098.png" class="image" alt="">
             </div>
             <div class="panel right-panel">
                 <div class="content">
                     <h3>One of Us?</h3>
                     <button class="btn transparent" id="sign-in-btn">Sign in</button>
                 </div>
-                <img src="images/undraw_on_the_way_re_swjt.png" class="image" alt="">
+                <img src="images/—Pngtree—pole vaulting volleyball tennis weight_7579385.png" class="image" alt="">
             </div>
         </div>
     </div>

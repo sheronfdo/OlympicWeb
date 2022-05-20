@@ -27,7 +27,7 @@ input {
     width: 2000px;
     height: 2000px;
     border-radius: 50%;
-    background: linear-gradient(-45deg, rgb(90, 161, 237), #093d9e);
+    background: linear-gradient(-45deg, rgb(12, 153, 26), #1d9e14);
     top: -10%;
     right: 48%;
     transform: translateY(-50%);
@@ -123,7 +123,7 @@ form.sign-up-form {
     outline: none;
     border-radius: 49px;
     cursor: pointer;
-    background-color: #a6acaf;
+    background-color: #06344b;
     color: #fff;
     text-transform: uppercase;
     font-weight: 600;

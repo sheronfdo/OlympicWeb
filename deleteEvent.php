@@ -7,6 +7,6 @@
   $eventService->setId($eventId);
   $eventService->deleteEvent();
  echo '<script> alert("Event Deleted Successfull"); </script>';
-echo '<script>  window.location.href="eventManageForm.php";</script>';
+ echo '<script>  window.location.href="eventManageForm.php";</script>';
 
 ?>
