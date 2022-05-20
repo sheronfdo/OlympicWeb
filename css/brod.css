@@ -1,8 +1,38 @@
 .brod {
-    background-color: blue;
+    background-color: rgb(181, 181, 190);
     width: 100%;
 }
 
 .liveBrod {
-    margin: 5% 20%;
+
+    width: 1280px;
+    height: 720px;
 }
+@media only screen and (max-width: 1920px) {
+    .liveBrod {
+margin: auto 20px;
+        width: 1850px;
+        height: 900px;
+    }
+  }
+@media only screen and (max-width: 1400px) {
+    .liveBrod {
+        margin: auto 20px;
+        width: 720px;
+        height: 480px;
+    }
+  }
+  @media only screen and (max-width: 750px) {
+    .liveBrod {
+
+        width: 640px;
+        height: 380px;
+    }
+  }
+  @media only screen and (max-width: 680px) {
+    .liveBrod {
+
+        width: 420px;
+        height: 240px;
+    }
+  }

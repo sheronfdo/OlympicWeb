@@ -28,7 +28,7 @@
             }
         }
         $converturl = str_replace("watch?v=","embed/", $srcLink);
-        echo '<iframe class="liveBrod" src="'.$converturl.'" allow="accelerometer; autoplay;" frameborder="0" allowfullscreen></iframe>';
+        echo '<div class = "vid"><iframe class="liveBrod" src="'.$converturl.'" allow="accelerometer; autoplay;" frameborder="0" allowfullscreen></iframe></div>';
         ?>
     </div>
 
